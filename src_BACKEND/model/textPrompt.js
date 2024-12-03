@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const textSchema = new mongoose.Schema(
   {
-    TextNameField: { type: String, required: true},
-    
+    textField: { type: String, required: true }
   },
   { timestamps: true }
 );

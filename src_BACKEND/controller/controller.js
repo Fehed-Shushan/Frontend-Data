@@ -1,66 +1,68 @@
-const User = require("../model/textPrompt");
+const Text = require("../model/textPrompt");
 
-exports.createUser = async (req, res) => {
+// Skapa en ny text
+exports.createText = async (req, res) => {
   try {
     const { textField } = req.body;
-    const newUser = new User({ textField });
-    await newUser.save();
-    res
-      .status(201)
-      .json({ message: "Text sent", textField });
+    const newText = new Text({ textField });
+    await newText.save();
+    res.status(201).json({ message: "Text created successfully", text: newText });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "no text send", error });
+    res.status(400).json({ message: "Failed to create text", error });
   }
 };
 
-exports.getAllUsers = async (req, res) => {
+// Hämta alla texter
+exports.getAllTexts = async (req, res) => {
   try {
-    const Text = await  Text.find();
-    res.status(200).json(Texts);
+    const texts = await Text.find();
+    res.status(200).json(texts);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error, Can`t get text", error });
+    res.status(500).json({ message: "Failed to retrieve texts", error });
   }
 };
 
-exports.getUserById = async (req, res) => {
+// Hämta en text via ID
+exports.getTextById = async (req, res) => {
   try {
-    const Text = await Text.findById(req.params.user_id);
-    if (!Text) return res.status(404).json({ message: "Text not found" });
-    res.status(200).json(Text);
+    const text = await Text.findById(req.params.text_id);
+    if (!text) return res.status(404).json({ message: "Text not found" });
+    res.status(200).json(text);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error, Can`t get text", error });
+    res.status(500).json({ message: "Failed to retrieve text", error });
   }
 };
 
-exports.updateUser = async (req, res) => {
+// Uppdatera en text
+exports.updateText = async (req, res) => {
   try {
-    const updatedTexts = await Texts.findByIdAndUpdate(
-      req.params.user_id,
+    const updatedText = await Text.findByIdAndUpdate(
+      req.params.text_id,
       req.body,
       { new: true }
     );
-    if (!updatedTexts)
-      return res.status(404).json({ message: "Texts not found" });
-    res
-      .status(200)
-      .json({ message: "The Text is successfully updated", Texts: updatedTexts });
+    if (!updatedText) return res.status(404).json({ message: "Text not found" });
+    res.status(200).json({ message: "Text updated successfully", text: updatedText });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "Error updating the text", error });
+    res.status(400).json({ message: "Failed to update text", error });
   }
 };
 
-exports.deleteUser = async (req, res) => {
+// Ta bort en text
+exports.deleteText = async (req, res) => {
   try {
-    const deletedTexts = await Texts.findByIdAndDelete(req.params.user_id);
-    if (!deletedTexts)
-      return res.status(404).json({ message: "Text not found" });
-    res.status(200).json({ message: "Text is successfully deleted" });
+    const deletedText = await Text.findByIdAndDelete(req.params.text_id);
+    if (!deletedText) return res.status(404).json({ message: "Text not found" });
+    res.status(200).json({ message: "Text deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error deleting Text", error });
+    res.status(500).json({ message: "Failed to delete text", error });
   }
 };
+
+
+

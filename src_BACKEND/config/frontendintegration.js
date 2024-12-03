@@ -1,4 +1,4 @@
-async function registerUser() {
+async function sendText() {
     var TextNameField = document.getElementById("Textname");
   
   
