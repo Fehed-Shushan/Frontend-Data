@@ -1,6 +1,6 @@
 const Text = require("../model/textPrompt");
 
-// Skapa en ny text
+// En text som skapas 
 exports.createText = async (req, res) => {
   try {
     const { textField } = req.body;

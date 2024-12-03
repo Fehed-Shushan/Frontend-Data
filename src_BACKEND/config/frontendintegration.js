@@ -1,7 +1,6 @@
 async function sendText() {
     var TextNameField = document.getElementById("Textname");
   
-  
     if (
       TextNameField.value !== "" 
     ) {
@@ -37,3 +36,5 @@ async function sendText() {
       }
     }
   }
+
+
