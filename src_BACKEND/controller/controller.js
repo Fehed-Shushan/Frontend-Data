@@ -1,6 +1,6 @@
 const Text = require("../model/textPrompt");
 
-// En text som skapas 
+
 exports.createText = async (req, res) => {
   try {
     const { textField } = req.body;
@@ -13,7 +13,7 @@ exports.createText = async (req, res) => {
   }
 };
 
-// Hämta alla texter
+
 exports.getAllTexts = async (req, res) => {
   try {
     const texts = await Text.find();
@@ -24,7 +24,7 @@ exports.getAllTexts = async (req, res) => {
   }
 };
 
-// Hämta en text via ID
+
 exports.getTextById = async (req, res) => {
   try {
     const text = await Text.findById(req.params.text_id);
@@ -36,7 +36,7 @@ exports.getTextById = async (req, res) => {
   }
 };
 
-// Uppdatera en text
+
 exports.updateText = async (req, res) => {
   try {
     const updatedText = await Text.findByIdAndUpdate(
@@ -52,7 +52,7 @@ exports.updateText = async (req, res) => {
   }
 };
 
-// Ta bort en text
+
 exports.deleteText = async (req, res) => {
   try {
     const deletedText = await Text.findByIdAndDelete(req.params.text_id);
